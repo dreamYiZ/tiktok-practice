@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 200px;
+            display: flex;
+        }
+        .left{
+            width: 150px;
+        }
+        .right{
+            margin-left: auto;
+            flex: 1;
+        }
+        .left, .right{
+            height: 100%;
+        }
+
+
+        .left{
+            background-color: red;
+        }
+        .right{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+
+
+    <div>
+        <pre>
+            # 布局实现 
+
+                左侧：宽度固定150px，高度和右侧同高
+
+                右侧：宽度自适应，高度和左侧同高
+
+        </pre>
+    </div>
+</body>
+</html>
