@@ -5,11 +5,11 @@ const isArray = Array.isArray;
 function flatten(someObj) {
   const result = {};
 
-  const forIn = (key, obj, isObjBelongArray) => {
+  const forIn = (key='', obj, isObjBelongArray) => {
     for (i in obj) {
       if (isObject(obj[i])) {
         const objIsArray = isArray(obj[i]);
-        forIn(`${key ? `${key}${isObjBelongArray?``:`.`}` : ""}${i}${isObjBelongArray?`]`:''}${objIsArray?`[`:``}`, obj[i], isArray(obj[i]));
+        forIn(`${key ? `${key}${isObjBelongArray?``:`.`}` : ""}${i}${isObjBelongArray?`]`:''}${objIsArray?`[`:``}`, obj[i], objIsArray);
       } else {
         let resultKey;
         if (isObjBelongArray) {
@@ -22,7 +22,7 @@ function flatten(someObj) {
     }
   };
 
-  forIn("", someObj);
+  forIn('', someObj);
   return result;
 }
 
