@@ -1,6 +1,6 @@
 import "./App.css";
 import { createUseStyles } from "react-jss";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { debounce } from "./util/debounce.tsx";
 
@@ -58,14 +58,14 @@ function App() {
           })
           .then((res) => {
             setLoading(false);
-            const { total, list } = res;
+            const { total, list : newList } = res;
             if (page === 1) {
-              setList(list);
+              setList(newList);
             } else {
-              setList((prevList) => [...prevList, ...list]);
+              setList((prevList) => [...prevList, ...newList]);
             }
             setTotal(total);
-            if (list.length < PAGE_SIZE) {
+            if (newList.length < PAGE_SIZE) {
               setHasMore(false);
             }
           })
@@ -119,6 +119,14 @@ function App() {
   }, [hasMoreRef]);
 
   // 滑到底部加载更多 --------------- 结束
+
+
+  useEffect(() => {
+    if(total<= list.length){
+      setHasMore(false);
+    }
+    
+  }, [list.length, total])
 
   return (
     <div className={classes.App}>
