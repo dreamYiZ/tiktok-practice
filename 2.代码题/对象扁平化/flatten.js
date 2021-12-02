@@ -5,14 +5,14 @@ const isArray = Array.isArray;
 function flatten(someObj) {
   const result = {};
 
-  const forIn = (key='', obj, isObjBelongArray) => {
+  const forIn = (key='', obj, isParentObjBelongArray) => {
     for (i in obj) {
       if (isObject(obj[i])) {
         const objIsArray = isArray(obj[i]);
-        forIn(`${key ? `${key}${isObjBelongArray?``:`.`}` : ""}${i}${isObjBelongArray?`]`:''}${objIsArray?`[`:``}`, obj[i], objIsArray);
+        forIn(`${key ? `${key}${isParentObjBelongArray?``:`.`}` : ""}${i}${isParentObjBelongArray?`]`:''}${objIsArray?`[`:``}`, obj[i], objIsArray);
       } else {
         let resultKey;
-        if (isObjBelongArray) {
+        if (isParentObjBelongArray) {
           resultKey = `${key ? `${key}` : ""}${i}]`;
         } else {
           resultKey = `${key ? `${key}.` : ""}${i}`;
